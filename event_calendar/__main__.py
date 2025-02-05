@@ -1,11 +1,11 @@
-from .event_calendar import EventCalendar
+from .event_calendar import Controller
 
 if __name__ == '__main__':
     print("__main__.py")
     print("  メインプログラムの起点。")
     print("event calendar project")
     
-    ec = EventCalendar()
-    ec.mainloop()
+    ctrl = Controller()
+    ctrl._winRoot.mainloop()
 
     #main()
