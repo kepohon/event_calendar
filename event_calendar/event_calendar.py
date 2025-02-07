@@ -7,37 +7,53 @@ import calendar
 from tkinter import messagebox
 import sqlite3
 import os
+import pprint
+import sys
 
-#from .ymd import YMD
+sys.path.append(os.path.join(os.path.dirname(__file__)))
+
+print(__file__)
+pprint.pprint(sys.path)
+
+from ymd import YMD
 
 # 全体を制御するクラス
 class Controller:
     _dbName = ""
     
     def __init__(self):
+        print("event_calendar.py")
+        print(os.getcwd())
+        
         dirname = os.path.dirname(__file__)
         self._dbName = os.path.join(dirname, "memo.db")
         
         self._today = YMD()         # 今日の日付
         self._currentDay = YMD()    # プログラムで指定されている日付
+        
         year = self._today.year
         month = self._today.month
         day = self._today.day
         
+        # ルートウィンドウの生成
         self._winRoot = WindowRoot()
         
+        # 左側フレームの生成
         self._frameLeft = FrameLeft(self._winRoot, self)
         self._frameLeft.grid( row=0, column=0, padx=10 )
         
+        # カレンダーフレームの生成
         self._frameCalendar = FrameCalendar(self._frameLeft, self)
         self._frameCalendar.grid( row=1, column=0, columnspan=3 )
         
         # カレンダーの日付を表示する
         self._frameCalendar.displayCalendar(0, year, month, day)
         
+        # 右側フレームの生成
         self._frameRight = FrameRight(self._winRoot, self, self._today)
         self._frameRight.grid( row=0, column=1 )
         
+        # メモフレームの生成
         self._frameMemo = FrameMemo(self._frameRight, self, self._currentDay)
         self._frameMemo.grid( row=0, column=0, pady=10 )
         
@@ -437,7 +453,7 @@ class FrameMemo(tk.Frame):
     def setLabelMemoTitle(self, str):
         self._labelMemoTitle['text'] = str
     
-
+"""
 class YMD:
     _year = 0
     _month = 0
@@ -482,8 +498,10 @@ class YMD:
             self._day = value
         else:
             print("day number error!")
-    
+"""
 
 if __name__ == '__main__':
+    #from .ymd import YMD
+    #from ymd import YMD
     ctrl = Controller()
     ctrl._winRoot.mainloop()
