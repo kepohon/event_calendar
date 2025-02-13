@@ -7,5 +7,5 @@ setup(
     author='kepohon',
     author_email='knaka278@gmail.com',
     url='https://github.com/kepohon/event_calendar',
-    packages=find_packages()
+    packages=find_packages(),
 )

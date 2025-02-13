@@ -10,7 +10,13 @@ import os
 import pprint
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__)))
+# プロジェクトから起動した際にymd.pyをインポートするため、sys.pathにモジュール検索パスを追加
+#   プロジェクトから起動 ＝＞ /プロジェクト名
+#   単独で起動 ＝＞ /プロジェクト名/プロジェクト名  ＜－これを追加する
+print("event_calendar.py IN")
+print("sys.pathにモジュール検索パスを追加")
+currentDirectory = os.path.join(os.path.dirname(__file__))
+sys.path.append(currentDirectory)
 
 print(__file__)
 pprint.pprint(sys.path)
@@ -22,7 +28,7 @@ class Controller:
     _dbName = ""
     
     def __init__(self):
-        print("event_calendar.py")
+        print("Controller IN")
         print(os.getcwd())
         
         dirname = os.path.dirname(__file__)

@@ -1,12 +1,9 @@
 import os
-#from event_calendar.ymd import YMD
-#from event_calendar.ymd import YMD
+import pprint
+import sys
 
-#__all__ = ['YMD',]
-
-print("__init__.py")
+print("__init__.py IN")
 print(__file__)
 print(os.getcwd())
+pprint.pprint(sys.path)
 
-#today = YMD()
-#print(f"{today.year}/{today.month}/{today.day}")

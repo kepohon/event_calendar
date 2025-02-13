@@ -1,5 +1,4 @@
 ''' ymd.py '''
-#__all__ = ['YMD',]
 
 import datetime
 
